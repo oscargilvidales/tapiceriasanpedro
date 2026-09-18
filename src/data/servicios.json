@@ -2,12 +2,12 @@
   {
     "id": "cortinas",
     "titulo": "Cortinas y Estores",
-    "descripcion": "Confección e instalación a medida con tejidos de alta calidad.",
+    "descripcion": "Diseñamos, confeccionamos e instalamos cortinas y estores a medida para vestir cada ventana con estilo, funcionalidad y un acabado cuidado. Te ayudamos a elegir los tejidos, sistemas de apertura y niveles de luz más adecuados para tu espacio.",
     "imagen": "/img/cortinas-generica.svg",
     "tipos": [
       {
         "nombre": "Cortinas de Barra",
-        "descripcion": "Aportan un toque decorativo tradicional o moderno según el material (forja, madera, acero). Ideales con anillas, ollaos o trabillas.",
+        "descripcion": "Una solución versátil que combina presencia decorativa y facilidad de uso. Puedes elegir entre barras de forja, madera o acero, junto con acabados de anillas, ollaos o trabillas para conseguir el estilo que mejor encaje con la estancia.",
         "galeria": [
           "/img/cortinas.jpg",
           "/img/cortinas-detalle.svg"
@@ -15,7 +15,7 @@
       },
       {
         "nombre": "Cortinas de Riel",
-        "descripcion": "Perfectas para un deslizamiento fluido y un acabado más integrado y minimalista. Ofrecemos rieles manuales, a cordón o motorizados.",
+        "descripcion": "Ideales para grandes ventanales y ambientes de líneas limpias. Los rieles permiten un deslizamiento suave y un acabado discreto, con opciones manuales, de cordón o motorizadas para adaptar la instalación a tus necesidades.",
         "galeria": [
           "/img/cortinas.jpg",
           "/img/cortinas-detalle.svg"
@@ -23,7 +23,7 @@
       },
       {
         "nombre": "Estores",
-        "descripcion": "Disponibles en una amplia variedad de tejidos y estilos, desde enrollables hasta plegables.",
+        "descripcion": "Estores confeccionados a medida en distintos tejidos, colores y niveles de transparencia. Son una opción práctica para regular la entrada de luz y mejorar la privacidad sin renunciar a una estética elegante.",
         "galeria": [
           "/img/cortinas.jpg",
           "/img/cortinas-detalle.svg"
@@ -31,7 +31,7 @@
       },
       {
         "nombre": "Enrollables",
-        "descripcion": "Diseños modernos y funcionales, ideales para controlar la luz y la privacidad en cualquier espacio.",
+        "descripcion": "Una alternativa moderna y funcional para ventanas de cualquier tamaño. Sus tejidos y mecanismos permiten controlar la luz, proteger la intimidad y aprovechar mejor el espacio disponible.",
         "galeria": [
           "/img/cortinas.jpg",
           "/img/cortinas-detalle.svg"
@@ -42,12 +42,12 @@
   {
     "id": "cabeceros",
     "titulo": "Cabeceros a Medida",
-    "descripcion": "Diseño y tapizado artesanal para dormitorios.",
+    "descripcion": "Diseñamos y tapizamos cabeceros a medida para transformar el dormitorio y darle una personalidad propia. Adaptamos las dimensiones, la forma, el acolchado y el tejido al estilo de la habitación y a tus preferencias.",
     "imagen": "/img/cabeceros-generica.svg",
     "tipos": [
       {
-        "nombre": "Cabeceros de Madera",
-        "descripcion": "Diseños únicos con acabados en madera natural o coloreada.",
+        "nombre": "Cabeceros Tapizados",
+        "descripcion": "Cabeceros tapizados a medida con diferentes formas, acolchados y tejidos para crear un dormitorio cómodo y con personalidad. Adaptamos el diseño a la medida de la cama y te ayudamos a elegir el acabado que mejor combine con tu decoración.",
         "galeria": [
           "/img/cabeceros.jpg",
           "/img/cabeceros-detalle.svg"
@@ -58,12 +58,12 @@
   {
     "id": "toldos",
     "titulo": "Instalación de Toldos",
-    "descripcion": "Protección solar exterior con instalación garantizada.",
+    "descripcion": "Instalamos toldos a medida para proteger terrazas, ventanas y zonas exteriores del sol y del calor. Te asesoramos sobre el sistema, la lona y el accionamiento más adecuados para conseguir sombra y confort durante todo el año.",
     "imagen": "/img/toldos-generica.svg",
     "tipos": [
       {
         "nombre": "Toldos manuales",
-        "descripcion": "Duraderos y resistentes a la intemperie, ideales para terrazas y jardines.",
+        "descripcion": "Una opción práctica y resistente para terrazas, balcones y jardines. Los toldos manuales ofrecen un manejo sencillo y una protección eficaz frente al sol, con lonas y acabados preparados para el uso exterior.",
         "galeria": [
           "/img/toldos.jpg",
           "/img/toldos-detalle.svg"
@@ -71,7 +71,7 @@
       },
       {
         "nombre": "Toldos Mecanizados",
-        "descripcion": "Fáciles de usar y con sistemas de apertura motorizados para mayor comodidad.",
+        "descripcion": "Toldos con apertura y cierre motorizados para disfrutar de una mayor comodidad en el día a día. Se pueden integrar con sensores y mandos para regular la sombra de forma rápida y sencilla.",
         "galeria": [
           "/img/toldos.jpg",
           "/img/toldos-detalle.svg"
@@ -82,12 +82,12 @@
   {
     "id": "cojines-colchonetas",
     "titulo": "Cojines y Colchonetas",
-    "descripcion": "Confección a medida con espumas de alta densidad y tejidos resistentes. Ideales para sofás, terrazas y mobiliario de exterior.",
+    "descripcion": "Confeccionamos cojines y colchonetas a medida para renovar sofás, sillas, bancos y muebles de interior o exterior. Trabajamos con espumas de distintas densidades y tejidos resistentes para lograr comodidad, durabilidad y un acabado a tu gusto.",
     "imagen": "/img/cojines-generica.svg",
     "tipos": [
       {
         "nombre": "Cojines decorativos",
-        "descripcion": "Opciones variadas en tejidos de alta calidad para un estilo moderno.",
+        "descripcion": "Cojines decorativos confeccionados en una amplia variedad de tejidos, colores y formas. Son perfectos para renovar la imagen de cualquier estancia y añadir un toque personal y acogedor.",
         "galeria": [
           "/img/cojines.jpeg",
           "/img/cojines-detalle.svg"
@@ -95,7 +95,7 @@
       },
       {
         "nombre": "Colchonetas",
-        "descripcion": "Diseños únicos con acabados en espuma de alta densidad.",
+        "descripcion": "Colchonetas hechas a medida con espumas de alta densidad para ofrecer un apoyo cómodo y duradero. Adaptamos el grosor, la forma y el tejido al mueble o espacio donde se van a utilizar.",
         "galeria": [
           "/img/cojines.jpeg",
           "/img/cojines-detalle.svg"
@@ -103,7 +103,7 @@
       },
       {
         "nombre": "Cojines de Exterior",
-        "descripcion": "Resistentes a la intemperie y fáciles de limpiar, ideales para muebles de jardín.",
+        "descripcion": "Cojines pensados para terrazas, porches y jardines, confeccionados con tejidos resistentes al uso exterior y fáciles de mantener. Aportan comodidad y color sin perder funcionalidad.",
         "galeria": [
           "/img/cojines.jpeg",
           "/img/cojines-detalle.svg"
@@ -111,7 +111,7 @@
       },
       {
         "nombre": "Cojines de Asiento",
-        "descripcion": "Diseñados para proporcionar comodidad y soporte en sillas y bancos.",
+        "descripcion": "Cojines de asiento adaptados a sillas, bancos y butacas para mejorar la comodidad y el apoyo. Ajustamos las medidas, el grosor y las sujeciones para que encajen perfectamente.",
         "galeria": [
           "/img/cojines.jpeg",
           "/img/cojines-detalle.svg"
@@ -119,7 +119,7 @@
       },
       {
         "nombre": "Cojines de Respaldo",
-        "descripcion": "Ofrecen soporte adicional para la espalda, mejorando la postura y la comodidad.",
+        "descripcion": "Cojines de respaldo diseñados para proporcionar un apoyo cómodo y mejorar la sensación de descanso. Podemos confeccionarlos con la forma y el volumen adecuados para cada sofá, silla o banco.",
         "galeria": [
           "/img/cojines.jpeg",
           "/img/cojines-detalle.svg"
@@ -127,15 +127,15 @@
       },
       {
         "nombre": "Puffs",
-        "descripcion": "Perfectos para crear un ambiente acogedor y relajante en cualquier espacio.",
+        "descripcion": "Puffs confeccionados a medida para añadir un asiento auxiliar, un reposapiés o un elemento decorativo. Elegimos el tamaño, la forma, el relleno y el tejido para integrarlos en cualquier ambiente.",
         "galeria": [
           "/img/cojines.jpeg",
           "/img/cojines-detalle.svg"
         ]
       },
       {
-        "nombre": "Almohadas, y ropa de cama",
-        "descripcion": "Disponibles en una amplia variedad de tejidos y estilos, desde almohadas decorativas hasta ropa de cama funcional.",
+        "nombre": "Almohadas y ropa de cama",
+        "descripcion": "Confeccionamos almohadas, fundas y piezas de ropa de cama en distintos tejidos y acabados. Una forma de completar el dormitorio con textiles coordinados, cómodos y adaptados a tu estilo.",
         "galeria": [
           "/img/cojines.jpeg",
           "/img/cojines-detalle.svg"
