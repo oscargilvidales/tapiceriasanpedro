@@ -1,0 +1,54 @@
+---
+// src/components/BannerCookies.astro
+---
+
+<div 
+  id="cookie-banner" 
+  class="fixed bottom-0 left-0 w-full bg-[#F7F7F4] text-carbon p-4 md:p-6 z-50 transform translate-y-full transition-transform duration-500 shadow-[0_-8px_30px_rgba(0,0,0,0.15)] border-t border-[#D4D4D0]"
+>
+  <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+    <div class="text-sm md:text-base text-carbon-claro text-center md:text-left">
+      <p>
+        Utilizamos cookies propias y de terceros para mejorar la navegación y analizar el tráfico de la web.
+        Si continúas navegando, consideramos que aceptas su uso. Lee nuestra&nbsp;<a href="/politica-cookies" class="inline font-semibold text-carbon underline decoration-1 underline-offset-2 hover:text-carbon/80 transition-colors">Política de Cookies</a>.
+      </p>
+    </div>
+    <div class="flex gap-4 shrink-0">
+      <button id="btn-rechazar" class="text-carbon/70 hover:text-carbon text-sm font-medium transition-colors">
+        Rechazar
+      </button>
+      <button id="btn-aceptar" class="bg-carbon text-marfil font-bold px-6 py-2.5 rounded-xl hover:bg-[#2a2a2a] transition-all duration-200">
+        Aceptar
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const banner = document.getElementById('cookie-banner');
+    const btnAceptar = document.getElementById('btn-aceptar');
+    const btnRechazar = document.getElementById('btn-rechazar');
+
+    if (!banner || !btnAceptar || !btnRechazar) return;
+
+    const preferencia = localStorage.getItem('cookies-preferencia');
+
+    if (preferencia === 'aceptadas' || preferencia === 'rechazadas') {
+      banner.classList.add('translate-y-full');
+      return;
+    }
+
+    setTimeout(() => {
+      banner.classList.remove('translate-y-full');
+    }, 800);
+
+    const ocultarBanner = (aceptadas: boolean) => {
+      banner.classList.add('translate-y-full');
+      localStorage.setItem('cookies-preferencia', aceptadas ? 'aceptadas' : 'rechazadas');
+    };
+
+    btnAceptar.addEventListener('click', () => ocultarBanner(true));
+    btnRechazar.addEventListener('click', () => ocultarBanner(false));
+  });
+</script>

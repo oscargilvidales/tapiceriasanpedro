@@ -12,13 +12,13 @@ const navLinks = [
 ---
 
 <header class="bg-[#F7F7F4] border-b border-[#D4D4D0] sticky top-0 z-[999] w-full">
-  <nav class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+  <nav class="max-w-7xl mx-auto px-3 sm:px-6 py-3 sm:py-4 flex justify-between items-center gap-3">
     
     <!-- Logo y Nombre -->
-    <a href="/" class="flex items-center gap-3">
+    <a href="/" class="flex items-center gap-2 sm:gap-3 min-w-0 flex-shrink-0 max-w-full">
       <!-- Asegúrate de colocar image.png en la carpeta public/ -->
-      <img src="/img/image.png" alt="Logo Tapicería San Pedro" class="w-10 h-10 rounded-logo" />
-      <span class="text-xl font-bold text-carbon tracking-tight">Tapicería San Pedro</span>
+      <img src="/img/image.png" alt="Logo Tapicería San Pedro" class="w-8 h-8 sm:w-10 sm:h-10 rounded-logo" />
+      <span class="inline text-[0.9rem] sm:text-xl font-bold text-carbon tracking-tight max-w-[7.5rem] sm:max-w-[13rem] md:max-w-none">Tapicería San Pedro</span>
     </a>
 
     <!-- Menú de Escritorio (Oculto en móviles) -->
@@ -35,8 +35,8 @@ const navLinks = [
     </div>
 
     <!-- Botón Menú Móvil (Hamburguesa) -->
-    <button id="menu-btn" class="md:hidden text-carbon focus:outline-none" aria-label="Abrir menú">
-      <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <button id="menu-btn" class="md:hidden ml-auto text-carbon focus:outline-none" aria-label="Abrir menú" aria-expanded="false">
+      <svg class="w-7 h-7 sm:w-8 sm:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
       </svg>
     </button>
@@ -59,22 +59,21 @@ const navLinks = [
 </header>
 
 <script>
-  // El código dentro de <script> en Astro se procesa, optimiza y se envía al navegador.
-  // Es Vanilla JS puro interactuando directamente con el DOM.
-  
   const setupMenu = () => {
     const menuBtn = document.getElementById('menu-btn');
     const mobileMenu = document.getElementById('mobile-menu');
 
-    if (menuBtn && mobileMenu) {
-      // Limpiamos listeners previos por si Astro hace una transición de vista
-      menuBtn.replaceWith(menuBtn.cloneNode(true));
-    }
+    if (!menuBtn || !mobileMenu) return;
+
+    const toggleMenu = () => {
+      const isHidden = mobileMenu.classList.contains('hidden');
+      mobileMenu.classList.toggle('hidden', !isHidden);
+      menuBtn.setAttribute('aria-expanded', String(!isHidden));
+    };
+
+    menuBtn.onclick = toggleMenu;
   };
 
-  // Ejecutar al cargar la página
   setupMenu();
-  
-  // Si activas las "View Transitions" de Astro en el futuro, esto asegura que el menú siga funcionando
   document.addEventListener('astro:page-load', setupMenu);
 </script>
