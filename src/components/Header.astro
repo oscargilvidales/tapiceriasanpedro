@@ -1,0 +1,80 @@
+---
+// Aquí va el código de servidor (equivalente a lo que iría fuera del return en React)
+// Definimos los enlaces en un array para iterarlos fácilmente
+const navLinks = [
+    { name: 'Inicio', url: '/' },
+    { name: 'Cortinas', url: '/servicios/cortinas' },
+    { name: 'Cabeceros', url: '/servicios/cabeceros' },
+    { name: 'Toldos', url: '/servicios/toldos' },
+    { name: 'Cojines y Colchonetas', url: '/servicios/cojines-colchonetas' },
+    { name: 'Sobre nosotros', url: '/sobre-nosotros'},
+];
+---
+
+<header class="bg-[#F7F7F4] border-b border-[#D4D4D0] sticky top-0 z-[999] w-full">
+  <nav class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+    
+    <!-- Logo y Nombre -->
+    <a href="/" class="flex items-center gap-3">
+      <!-- Asegúrate de colocar image.png en la carpeta public/ -->
+      <img src="/img/image.png" alt="Logo Tapicería San Pedro" class="w-10 h-10 rounded-logo" />
+      <span class="text-xl font-bold text-carbon tracking-tight">Tapicería San Pedro</span>
+    </a>
+
+    <!-- Menú de Escritorio (Oculto en móviles) -->
+    <div class="hidden md:flex gap-8 items-center">
+      {navLinks.map((link) => (
+        <a href={link.url} class="text-carbon-claro hover:text-carbon font-medium transition-colors">
+          {link.name}
+        </a>
+      ))}
+      <!-- Botón de acción principal usando la clase de global.css -->
+      <a href="https://wa.me/34616373306" class="btn-solido text-sm px-5 py-2" target="_blank" rel="noopener noreferrer">
+        Pedir Presupuesto
+      </a>
+    </div>
+
+    <!-- Botón Menú Móvil (Hamburguesa) -->
+    <button id="menu-btn" class="md:hidden text-carbon focus:outline-none" aria-label="Abrir menú">
+      <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+      </svg>
+    </button>
+    
+  </nav>
+
+  <!-- Menú Móvil Desplegable (Oculto por defecto) -->
+  <div id="mobile-menu" class="hidden md:hidden bg-marfil border-t border-[#D4D4D0]">
+    <div class="flex flex-col px-6 py-4 gap-4">
+      {navLinks.map((link) => (
+        <a href={link.url} class="text-carbon font-medium text-lg">
+          {link.name}
+        </a>
+      ))}
+      <a href="https://wa.me/34616373306" class="btn-solido text-center mt-2" target="_blank" rel="noopener noreferrer">
+        Pedir Presupuesto
+      </a>
+    </div>
+  </div>
+</header>
+
+<script>
+  // El código dentro de <script> en Astro se procesa, optimiza y se envía al navegador.
+  // Es Vanilla JS puro interactuando directamente con el DOM.
+  
+  const setupMenu = () => {
+    const menuBtn = document.getElementById('menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    if (menuBtn && mobileMenu) {
+      // Limpiamos listeners previos por si Astro hace una transición de vista
+      menuBtn.replaceWith(menuBtn.cloneNode(true));
+    }
+  };
+
+  // Ejecutar al cargar la página
+  setupMenu();
+  
+  // Si activas las "View Transitions" de Astro en el futuro, esto asegura que el menú siga funcionando
+  document.addEventListener('astro:page-load', setupMenu);
+</script>

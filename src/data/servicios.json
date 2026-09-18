@@ -1,0 +1,146 @@
+[
+  {
+    "id": "cortinas",
+    "titulo": "Cortinas y Estores",
+    "descripcion": "Confección e instalación a medida con tejidos de alta calidad.",
+    "imagen": "/img/cortinas-generica.svg",
+    "tipos": [
+      {
+        "nombre": "Cortinas de Barra",
+        "descripcion": "Aportan un toque decorativo tradicional o moderno según el material (forja, madera, acero). Ideales con anillas, ollaos o trabillas.",
+        "galeria": [
+          "/img/cortinas.jpg",
+          "/img/cortinas-detalle.svg"
+        ]
+      },
+      {
+        "nombre": "Cortinas de Riel",
+        "descripcion": "Perfectas para un deslizamiento fluido y un acabado más integrado y minimalista. Ofrecemos rieles manuales, a cordón o motorizados.",
+        "galeria": [
+          "/img/cortinas.jpg",
+          "/img/cortinas-detalle.svg"
+        ]
+      },
+      {
+        "nombre": "Estores",
+        "descripcion": "Disponibles en una amplia variedad de tejidos y estilos, desde enrollables hasta plegables.",
+        "galeria": [
+          "/img/cortinas.jpg",
+          "/img/cortinas-detalle.svg"
+        ]
+      },
+      {
+        "nombre": "Enrollables",
+        "descripcion": "Diseños modernos y funcionales, ideales para controlar la luz y la privacidad en cualquier espacio.",
+        "galeria": [
+          "/img/cortinas.jpg",
+          "/img/cortinas-detalle.svg"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "cabeceros",
+    "titulo": "Cabeceros a Medida",
+    "descripcion": "Diseño y tapizado artesanal para dormitorios.",
+    "imagen": "/img/cabeceros-generica.svg",
+    "tipos": [
+      {
+        "nombre": "Cabeceros de Madera",
+        "descripcion": "Diseños únicos con acabados en madera natural o coloreada.",
+        "galeria": [
+          "/img/cabeceros.jpg",
+          "/img/cabeceros-detalle.svg"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "toldos",
+    "titulo": "Instalación de Toldos",
+    "descripcion": "Protección solar exterior con instalación garantizada.",
+    "imagen": "/img/toldos-generica.svg",
+    "tipos": [
+      {
+        "nombre": "Toldos manuales",
+        "descripcion": "Duraderos y resistentes a la intemperie, ideales para terrazas y jardines.",
+        "galeria": [
+          "/img/toldos.jpg",
+          "/img/toldos-detalle.svg"
+        ]
+      },
+      {
+        "nombre": "Toldos Mecanizados",
+        "descripcion": "Fáciles de usar y con sistemas de apertura motorizados para mayor comodidad.",
+        "galeria": [
+          "/img/toldos.jpg",
+          "/img/toldos-detalle.svg"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "cojines-colchonetas",
+    "titulo": "Cojines y Colchonetas",
+    "descripcion": "Confección a medida con espumas de alta densidad y tejidos resistentes. Ideales para sofás, terrazas y mobiliario de exterior.",
+    "imagen": "/img/cojines-generica.svg",
+    "tipos": [
+      {
+        "nombre": "Cojines decorativos",
+        "descripcion": "Opciones variadas en tejidos de alta calidad para un estilo moderno.",
+        "galeria": [
+          "/img/cojines.jpeg",
+          "/img/cojines-detalle.svg"
+        ]
+      },
+      {
+        "nombre": "Colchonetas",
+        "descripcion": "Diseños únicos con acabados en espuma de alta densidad.",
+        "galeria": [
+          "/img/cojines.jpeg",
+          "/img/cojines-detalle.svg"
+        ]
+      },
+      {
+        "nombre": "Cojines de Exterior",
+        "descripcion": "Resistentes a la intemperie y fáciles de limpiar, ideales para muebles de jardín.",
+        "galeria": [
+          "/img/cojines.jpeg",
+          "/img/cojines-detalle.svg"
+        ]
+      },
+      {
+        "nombre": "Cojines de Asiento",
+        "descripcion": "Diseñados para proporcionar comodidad y soporte en sillas y bancos.",
+        "galeria": [
+          "/img/cojines.jpeg",
+          "/img/cojines-detalle.svg"
+        ]
+      },
+      {
+        "nombre": "Cojines de Respaldo",
+        "descripcion": "Ofrecen soporte adicional para la espalda, mejorando la postura y la comodidad.",
+        "galeria": [
+          "/img/cojines.jpeg",
+          "/img/cojines-detalle.svg"
+        ]
+      },
+      {
+        "nombre": "Puffs",
+        "descripcion": "Perfectos para crear un ambiente acogedor y relajante en cualquier espacio.",
+        "galeria": [
+          "/img/cojines.jpeg",
+          "/img/cojines-detalle.svg"
+        ]
+      },
+      {
+        "nombre": "Almohadas, y ropa de cama",
+        "descripcion": "Disponibles en una amplia variedad de tejidos y estilos, desde almohadas decorativas hasta ropa de cama funcional.",
+        "galeria": [
+          "/img/cojines.jpeg",
+          "/img/cojines-detalle.svg"
+        ]
+      }
+    ]
+  }
+]

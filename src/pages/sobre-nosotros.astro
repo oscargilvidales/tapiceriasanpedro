@@ -1,0 +1,127 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const marcas = [
+  { nombre: 'James Malone', logo: '/marcas/JamesMalone.jpeg', url: 'https://jamesmalonefabrics.com/' },
+  { nombre: 'Lumar', logo: '/marcas/Lumar.jpeg', url: 'https://www.lumardecoracion.com/' },
+  { nombre: 'Tapicenter', logo: '/marcas/Tapicenter.jpeg', url: 'https://www.tapicentercostasolmalaga.com/' },
+  { nombre: 'Yutes', logo: '/marcas/Yutes.jpeg', url: 'https://www.yutes.com/' },
+  { nombre: 'Antonio Ferré', logo: '/marcas/AFerre.jpeg', url: 'https://www.aferre.com/' },
+  { nombre: 'Emso', logo: '/marcas/Emso.jpeg', url: 'https://www.emsocollections.com/' },
+  { nombre: 'Alhambra', logo: '/marcas/Alhambra.jpeg', url: 'https://www.alhambrafabrics.com/' },
+  { nombre: 'Ecopen', logo: '/marcas/ECOPLEN.jpeg', url: 'https://www.atenzza.com/ecoplen/' },
+  { nombre: 'Acuaclean', logo: '/marcas/aquaclean.jpeg', url: 'https://www.aquaclean.com/' },
+];
+---
+
+<Layout title="Sobre Nosotros | Tapicería San Pedro">
+  
+  <main class="max-w-7xl mx-auto px-6 py-20 md:py-32">
+    
+    <!-- Cabecera de la página -->
+    <div class="text-center mb-16 md:mb-24">
+      <h1 class="text-5xl md:text-6xl font-bold text-carbon tracking-tight mb-6">Artesanía y Experiencia</h1>
+      <p class="text-xl text-carbon-claro max-w-2xl mx-auto">
+        Más de cuatro décadas dedicadas al oficio, la fiabilidad y el trabajo bien hecho.
+      </p>
+    </div>
+
+    <!-- Sección principal: Historia y Taller -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center mb-24">
+      
+      <!-- Columna de imagen -->
+      <div class="aspect-[4/5] bg-[#D4D4D0] rounded-3xl overflow-hidden shadow-sm relative group">
+        <img 
+          src="/img/taller-generico.svg" 
+          alt="Salvador Gil Jiménez en Tapicería San Pedro" 
+          class="w-full h-full object-cover"
+          onerror="this.onerror=null;this.src='/img/placeholder.jpg';"
+        />
+      </div>
+
+      <!-- Columna de texto -->
+      <div class="flex flex-col gap-6 text-lg text-carbon-claro leading-relaxed">
+        <h2 class="text-3xl font-bold text-carbon mb-2">Pasión por el detalle</h2>
+        
+        <p>
+          En Tapicería San Pedro, cada proyecto lleva la firma de la experiencia. Al frente del taller se encuentra <span class="text-carbon font-semibold">Salvador Gil Jiménez</span>, un profesional del oficio con <strong>más de 40 años de trayectoria</strong> en el sector.
+        </p>
+
+        <p>
+          A lo largo de estas cuatro décadas, Salvador ha perfeccionado cada técnica y procedimiento. Hemos evolucionado con el tiempo, pero manteniendo intacta la esencia del trabajo artesanal: vender <strong>fiabilidad y máxima calidad</strong> en cada costura.
+        </p>
+
+        <p>
+          Sabemos que tu tiempo y tu hogar son lo más importante. Por ello, hemos optimizado nuestros procesos para garantizar que todas las instalaciones sean <strong>limpias, rápidas y, sobre todo, duraderas</strong>. Desde la toma de medidas hasta el montaje final, aseguramos un resultado impecable sin molestias para ti.
+        </p>
+      </div>
+    </div>
+
+    <!-- Sección de Valores -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-10 mb-24">
+      
+      <div class="bg-[#EFEFEA] p-8 rounded-2xl border border-[#D4D4D0]">
+        <!-- Icono de escudo de fiabilidad -->
+        <svg class="w-8 h-8 text-carbon mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path></svg>
+        <h3 class="text-xl font-bold text-carbon mb-3">Fiabilidad Absoluta</h3>
+        <p class="text-carbon-claro text-sm">Más de 40 años de clientes satisfechos nos avalan. Cumplimos los plazos acordados y respondemos por cada trabajo que sale de nuestro taller.</p>
+      </div>
+
+      <div class="bg-[#EFEFEA] p-8 rounded-2xl border border-[#D4D4D0]">
+        <!-- Icono de medalla de calidad -->
+        <svg class="w-8 h-8 text-carbon mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+        <h3 class="text-xl font-bold text-carbon mb-3">Materiales de Alta Calidad</h3>
+        <p class="text-carbon-claro text-sm">Solo utilizamos materiales de primera línea. Tejidos, espumas y herrajes seleccionados rigurosamente para garantizar acabados excepcionales.</p>
+      </div>
+
+      <div class="bg-[#EFEFEA] p-8 rounded-2xl border border-[#D4D4D0]">
+        <!-- Icono de limpieza/rapidez -->
+        <svg class="w-8 h-8 text-carbon mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+        <h3 class="text-xl font-bold text-carbon mb-3">Instalación Impecable</h3>
+        <p class="text-carbon-claro text-sm">Procedimientos depurados para ser rápidos y cuidadosos en tu domicilio. Dejamos el espacio recogido y el producto listo para disfrutar años y años.</p>
+      </div>
+      
+    </div>
+    <!-- SECCIÓN DE MARCAS Y PROVEEDORES -->
+    <div class="mb-24">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-carbon tracking-tight mb-3">Nuestras Marcas de Confianza</h2>
+        <p class="text-carbon-claro text-lg max-w-2xl mx-auto">
+          Trabajamos exclusivamente con firmas líderes del sector textil y de la decoración para garantizar la máxima durabilidad y diseño en cada acabado.
+        </p>
+      </div>
+
+      <!-- Cuadrícula de marcas -->
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6">
+        {marcas.map((marca) => (
+          <a
+            href={marca.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="bg-[#EFEFEA] border border-[#D4D4D0] rounded-2xl p-6 min-h-28 flex items-center justify-center transition-transform hover:-translate-y-1 hover:border-carbon"
+            aria-label={`Visitar ${marca.nombre}`}
+          >
+            <img src={marca.logo} alt={marca.nombre} class="max-w-full max-h-14 object-contain" />
+          </a>
+        ))}
+      </div>
+    </div>
+
+    <!-- CTA Final -->
+    <div class="bg-carbon rounded-3xl p-10 md:p-16 text-center text-marfil flex flex-col items-center">
+      <h2 class="text-3xl md:text-4xl font-bold mb-4">¿Hablamos sobre tu proyecto?</h2>
+      <p class="text-marfil/80 text-lg max-w-2xl mb-8">
+        Ponte en manos de profesionales. Cuéntanos qué necesitas y te prepararemos un presupuesto a medida.
+      </p>
+      <a 
+        href="https://wa.me/34600000000" 
+        class="bg-marfil text-carbon font-semibold px-8 py-3 rounded-xl border-2 border-marfil transition-all duration-200 hover:bg-transparent hover:text-marfil" 
+        target="_blank" 
+        rel="noopener noreferrer"
+      >
+        Contactar por WhatsApp
+      </a>
+    </div>
+
+  </main>
+</Layout>

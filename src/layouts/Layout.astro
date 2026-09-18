@@ -1,0 +1,25 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '../global.css';
+
+const { title } = Astro.props;
+---
+<!doctype html>
+<html lang="es">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<title>{title}</title>
+		<link rel="icon" type="image/png" href="/img/image.png?v=2" />
+		<link rel="shortcut icon" type="image/png" href="/img/image.png?v=2" />
+		<link rel="apple-touch-icon" href="/img/image.png?v=2" />
+	</head>
+	<body class="bg-marfil">
+		<Header />
+		
+		<!-- Aquí dentro caerá el contenido de index.astro -->
+		<slot /> 
+        <Footer />
+	</body>
+</html>

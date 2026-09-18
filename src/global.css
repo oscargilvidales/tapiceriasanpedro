@@ -1,0 +1,43 @@
+@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Blanco roto (Hueso/Marfil) - Cálido, textil y elegante */
+    --color-bg-base: #F7F7F4;
+    --color-bg-alt: #EFEFEA;
+    
+    /* Negro suave (Carbón) - Máximo contraste sin fatiga visual */
+    --color-text-base: #1A1A1A;
+    --color-text-muted: #525252;
+    
+    /* Bordes basados en el grosor del logo */
+    --color-border: #D4D4D0;
+  }
+
+  body {
+    background-color: var(--color-bg-base);
+    color: var(--color-text-base);
+    /* Tipografía sans-serif limpia para acompañar las líneas rectas del logo */
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+@layer components {
+  /* Botones inspirados en el diseño delineado del logo */
+  .btn-solido {
+    @apply bg-[#1A1A1A] text-[#F7F7F4] border-2 border-[#1A1A1A] px-6 py-3 rounded-xl font-semibold transition-all duration-200 hover:bg-transparent hover:text-[#1A1A1A];
+  }
+
+  .btn-contorno {
+    @apply bg-transparent text-[#1A1A1A] border-2 border-[#1A1A1A] px-6 py-3 rounded-xl font-semibold transition-all duration-200 hover:bg-[#1A1A1A] hover:text-[#F7F7F4];
+  }
+  
+  /* Tarjetas para los servicios de tapicería */
+  .tarjeta-servicio {
+    @apply bg-[#EFEFEA] border border-[#D4D4D0] rounded-2xl p-6 transition-transform hover:-translate-y-1;
+  }
+}
