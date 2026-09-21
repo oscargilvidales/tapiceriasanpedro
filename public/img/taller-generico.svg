@@ -1,9 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000">
-  <rect width="800" height="1000" fill="#d8d4ca"/>
-  <rect y="690" width="800" height="310" fill="#aaa79e"/>
-  <rect x="95" y="135" width="610" height="555" rx="20" fill="#eeeae1" stroke="#373737" stroke-width="12"/>
-  <path d="M130 190h540M160 290h480M190 390h420" stroke="#c27842" stroke-width="28" opacity=".8"/>
-  <circle cx="400" cy="540" r="92" fill="#a85f35" stroke="#373737" stroke-width="12"/>
-  <path d="M310 690h180l-25 120H335z" fill="#373737"/>
-  <text x="400" y="900" text-anchor="middle" font-family="sans-serif" font-size="42" font-weight="700" fill="#373737">NUESTRO TALLER</text>
-</svg>

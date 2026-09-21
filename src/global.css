@@ -24,6 +24,81 @@
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
     -webkit-font-smoothing: antialiased;
   }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      color-scheme: dark;
+      --color-bg-base: #151515;
+      --color-bg-alt: #242424;
+      --color-text-base: #f4f1e8;
+      --color-text-muted: #c9c6bd;
+      --color-border: #454545;
+    }
+
+    body,
+    [class~="bg-marfil"],
+    [class~="bg-[#F7F7F4]"] {
+      background-color: var(--color-bg-base) !important;
+      color: var(--color-text-base) !important;
+    }
+
+    [class~="bg-[#EFEFEA]"],
+    [class~="tarjeta-servicio"] {
+      background-color: var(--color-bg-alt) !important;
+    }
+
+    [class~="bg-[#D4D4D0]"] {
+      background-color: #353535 !important;
+    }
+
+    [class~="text-carbon"] {
+      color: var(--color-text-base) !important;
+    }
+
+    [class~="text-carbon-claro"] {
+      color: var(--color-text-muted) !important;
+    }
+
+    [class~="text-marfil"] {
+      color: #f4f1e8 !important;
+    }
+
+    [class~="border-[#D4D4D0]"],
+    [class~="tarjeta-servicio"] {
+      border-color: var(--color-border) !important;
+    }
+
+    [class~="border-marfil"] {
+      border-color: #f4f1e8 !important;
+    }
+
+    [class~="bg-carbon"] {
+      background-color: #f4f1e8 !important;
+      color: #151515 !important;
+    }
+
+    .logo-marca {
+      filter: invert(1) sepia(0.2) saturate(0.8) hue-rotate(350deg) brightness(1.05) !important;
+      mix-blend-mode: screen;
+    }
+
+    .btn-solido {
+      background-color: #f4f1e8 !important;
+      color: #151515 !important;
+      border-color: #f4f1e8 !important;
+    }
+
+    .btn-contorno {
+      color: #f4f1e8 !important;
+      border-color: #f4f1e8 !important;
+    }
+
+    .btn-contorno:hover,
+    .btn-solido:hover {
+      background-color: transparent !important;
+      color: #f4f1e8 !important;
+    }
+  }
 }
 
 @layer components {
@@ -39,5 +114,75 @@
   /* Tarjetas para los servicios de tapicería */
   .tarjeta-servicio {
     @apply bg-[#EFEFEA] border border-[#D4D4D0] rounded-2xl p-6 transition-transform hover:-translate-y-1;
+  }
+
+  .service-title {
+    @apply rounded-3xl px-6 py-8 md:px-10 md:py-12 mb-8;
+  }
+
+  .service-title--cortinas {
+    background-color: #edf1f4;
+  }
+
+  .service-title--cabeceros {
+    background-color: #edf1f4;
+  }
+
+  .service-title--toldos {
+    background-color: #edf1f4;
+  }
+
+  .service-title--cojines-colchonetas {
+    background-color: #edf1f4;
+  }
+
+  .contacto-acento {
+    background-color: #edf1f4;
+    border-color: #d7e1e8;
+  }
+
+  .contacto-panel {
+    background-color: #edf1f4;
+    border-color: #d7e1e8;
+  }
+
+  .contacto-boton {
+    background-color: #d8e5ee;
+    border-color: #c1d3df;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .service-title--cortinas {
+    background-color: #242b30 !important;
+  }
+
+  .service-title--cabeceros {
+    background-color: #242b30 !important;
+  }
+
+  .service-title--toldos {
+    background-color: #242b30 !important;
+  }
+
+  .service-title--cojines-colchonetas {
+    background-color: #242b30 !important;
+  }
+
+  .contacto-acento {
+    background-color: #202a27 !important;
+    border-color: #3a514a !important;
+    color: #f4f1e8 !important;
+  }
+
+  .contacto-panel {
+    background-color: #242b30 !important;
+    border-color: #3b4c57 !important;
+  }
+
+  .contacto-boton {
+    background-color: #31424e !important;
+    border-color: #49606e !important;
+    color: #f4f1e8 !important;
   }
 }

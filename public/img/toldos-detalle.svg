@@ -1,7 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800">
-  <rect width="1200" height="800" fill="#d8e1df"/>
-  <rect y="570" width="1200" height="230" fill="#aebdb9"/>
-  <path d="M190 280h820l-105 260H295z" fill="#c27842" stroke="#373737" stroke-width="12"/>
-  <path d="M245 295l-70 230M410 295l-40 230M575 295l-10 230M740 295l20 230M905 295l50 230" stroke="#f3d3aa" stroke-width="22"/>
-  <text x="600" y="700" text-anchor="middle" font-family="sans-serif" font-size="46" font-weight="700" fill="#373737">INSTALACION PROFESIONAL</text>
-</svg>
