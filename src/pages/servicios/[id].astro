@@ -235,6 +235,7 @@ const { servicio } = Astro.props;
   const moveGallery = (direction: number) => {
     if (currentGallery.length < 2) return;
     currentIndex = (currentIndex + direction + currentGallery.length) % currentGallery.length;
+    zoomLevel = 1;
     resetPan();
     showGalleryImage();
     updateTransform();

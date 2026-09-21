@@ -1,5 +1,7 @@
 ---
 // Obtenemos el año actual automáticamente para el Copyright
+import servicios from '../data/servicios.json';
+
 const currentYear = new Date().getFullYear();
 ---
 
@@ -37,13 +39,15 @@ const currentYear = new Date().getFullYear();
                             >Inicio</a
                         >
                     </li>
-                    <li>
-                        <a
-                            href="/#servicios"
-                            class="text-carbon-claro hover:text-carbon text-sm transition-colors"
-                            >Catálogo de Servicios</a
-                        >
-                    </li>
+                    {servicios.map((servicio) => (
+                        <li>
+                            <a
+                                href={`/servicios/${servicio.id}`}
+                                class="text-carbon-claro hover:text-carbon text-sm transition-colors"
+                                >{servicio.titulo}</a
+                            >
+                        </li>
+                    ))}
                 </ul>
             </div>
 
