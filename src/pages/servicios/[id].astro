@@ -1,11 +1,22 @@
 ---
-import { readdirSync } from 'node:fs';
-import { join } from 'node:path';
 import Layout from '../../layouts/Layout.astro';
 import servicios from '../../data/servicios.json';
-const images = import.meta.glob('/public/img/*.{jpeg,jpg,png,gif}');
 
-const imagenesPublicas: string[] = readdirSync(join(process.cwd(), 'public', 'img'));
+const imagenesPublicas: string[] = [
+  'Cojines.jpeg',
+  'asiento-1.jpeg',
+  'asiento-2.JPG',
+  'cojines-1.JPG',
+  'cortinas-1.JPG',
+  'cortinas-2.jpeg',
+  'exterior-1.jpeg',
+  'exterior-2.jpeg',
+  'logo.jpg',
+  'riel-1.jpeg',
+  'riel-2.JPG',
+  'riel-3.JPG',
+  'toldoMan-1.JPG',
+];
 const imagenesPorNombre = new Map(
   imagenesPublicas.map((nombre) => [nombre.toLowerCase(), nombre]),
 );
