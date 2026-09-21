@@ -84,12 +84,22 @@ const { servicio } = Astro.props;
                 {(tipo.galeria || []).length > 0 ? (
                   tipo.galeria.map((foto) => (
                     <div class="snap-center shrink-0 w-full aspect-[4/3] bg-[#D4D4D0] rounded-3xl overflow-hidden shadow-sm">
-                      <img
-                        src={resolverImagen(foto)}
-                        alt={tipo.nombre}
-                        class="w-full h-full object-cover"
-                        onerror="this.onerror=null;this.src='/img/taller-generico.svg';"
-                      />
+                      <button
+                        type="button"
+                        class="lightbox-trigger w-full h-full cursor-zoom-in"
+                        data-image={resolverImagen(foto)}
+                        data-alt={tipo.nombre}
+                        data-gallery={JSON.stringify((tipo.galeria || []).map((imagen) => resolverImagen(imagen)))}
+                        data-index={tipo.galeria.indexOf(foto)}
+                        aria-label={`Ampliar imagen de ${tipo.nombre}`}
+                      >
+                        <img
+                          src={resolverImagen(foto)}
+                          alt={tipo.nombre}
+                          class="w-full h-full object-cover"
+                          onerror="this.onerror=null;this.src='/img/taller-generico.svg';"
+                        />
+                      </button>
                     </div>
                   ))
                 ) : (
@@ -129,4 +139,181 @@ const { servicio } = Astro.props;
     </div>
 
   </main>
+
+  <div id="image-lightbox" class="fixed inset-0 z-[1000] hidden items-center justify-center bg-[#111]/90 p-4 md:p-10" role="dialog" aria-modal="true" aria-label="Visualización de imagen">
+    <button id="lightbox-close" type="button" class="absolute right-4 top-4 flex h-11 w-11 items-center justify-center rounded-full bg-marfil text-2xl leading-none text-carbon shadow-lg" aria-label="Cerrar imagen">
+      &times;
+    </button>
+    <button id="lightbox-previous" type="button" class="absolute left-4 top-1/2 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-marfil text-3xl leading-none text-carbon shadow-lg" aria-label="Imagen anterior">
+      &larr;
+    </button>
+    <img id="lightbox-image" src="" alt="" draggable="false" class="max-h-full max-w-full touch-none select-none rounded-xl object-contain shadow-2xl transition-transform duration-200 ease-out" />
+    <button id="lightbox-next" type="button" class="absolute right-4 top-1/2 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-marfil text-3xl leading-none text-carbon shadow-lg" aria-label="Imagen siguiente">
+      &rarr;
+    </button>
+    <div class="absolute bottom-4 left-1/2 flex -translate-x-1/2 items-center gap-2 rounded-full bg-[#111]/75 p-2 text-marfil shadow-lg">
+      <button id="lightbox-zoom-out" type="button" class="flex h-10 w-10 items-center justify-center rounded-full bg-marfil text-xl text-carbon" aria-label="Reducir imagen">&minus;</button>
+      <button id="lightbox-zoom-reset" type="button" class="min-w-14 rounded-full px-3 py-2 text-sm font-semibold" aria-label="Restablecer zoom">100%</button>
+      <button id="lightbox-zoom-in" type="button" class="flex h-10 w-10 items-center justify-center rounded-full bg-marfil text-xl text-carbon" aria-label="Aumentar imagen">&plus;</button>
+    </div>
+  </div>
 </Layout>
+
+<script>
+  const lightbox = document.getElementById('image-lightbox');
+  const lightboxImage = document.getElementById('lightbox-image') as HTMLImageElement | null;
+  const lightboxClose = document.getElementById('lightbox-close');
+  const lightboxPrevious = document.getElementById('lightbox-previous');
+  const lightboxNext = document.getElementById('lightbox-next');
+  const lightboxZoomOut = document.getElementById('lightbox-zoom-out');
+  const lightboxZoomReset = document.getElementById('lightbox-zoom-reset');
+  const lightboxZoomIn = document.getElementById('lightbox-zoom-in');
+  let currentGallery: string[] = [];
+  let currentIndex = 0;
+  let zoomLevel = 1;
+  let panX = 0;
+  let panY = 0;
+  let isDragging = false;
+  let dragStartX = 0;
+  let dragStartY = 0;
+  let dragOriginX = 0;
+  let dragOriginY = 0;
+
+  const updateTransform = () => {
+    if (!lightboxImage) return;
+    lightboxImage.style.transform = `translate(${panX}px, ${panY}px) scale(${zoomLevel})`;
+    if (lightboxZoomReset) lightboxZoomReset.textContent = `${Math.round(zoomLevel * 100)}%`;
+  };
+
+  const resetPan = () => {
+    panX = 0;
+    panY = 0;
+  };
+
+  const limitPan = () => {
+    if (!lightboxImage || zoomLevel <= 1) {
+      resetPan();
+      return;
+    }
+
+    const maxX = (lightboxImage.clientWidth * (zoomLevel - 1)) / 2;
+    const maxY = (lightboxImage.clientHeight * (zoomLevel - 1)) / 2;
+    panX = Math.min(maxX, Math.max(-maxX, panX));
+    panY = Math.min(maxY, Math.max(-maxY, panY));
+  };
+
+  const changeZoom = (amount: number) => {
+    zoomLevel = Math.min(3, Math.max(1, Number((zoomLevel + amount).toFixed(1))));
+    limitPan();
+    updateTransform();
+  };
+
+  const showGalleryImage = () => {
+    if (!lightboxImage || currentGallery.length === 0) return;
+    lightboxImage.src = currentGallery[currentIndex];
+    lightboxImage.alt = `Imagen ${currentIndex + 1} de ${currentGallery.length}`;
+  };
+
+  const updateGalleryControls = () => {
+    const hasMultipleImages = currentGallery.length > 1;
+    lightboxPrevious?.classList.toggle('hidden', !hasMultipleImages);
+    lightboxNext?.classList.toggle('hidden', !hasMultipleImages);
+  };
+
+  const moveGallery = (direction: number) => {
+    if (currentGallery.length < 2) return;
+    currentIndex = (currentIndex + direction + currentGallery.length) % currentGallery.length;
+    resetPan();
+    showGalleryImage();
+    updateTransform();
+  };
+
+  const closeLightbox = () => {
+    if (!lightbox || !lightboxImage) return;
+    lightbox.classList.add('hidden');
+    lightbox.classList.remove('flex');
+    currentGallery = [];
+    currentIndex = 0;
+    zoomLevel = 1;
+    resetPan();
+    updateTransform();
+    lightboxImage.src = '';
+    document.body.classList.remove('overflow-hidden');
+  };
+
+  document.querySelectorAll<HTMLButtonElement>('.lightbox-trigger').forEach((trigger) => {
+    trigger.addEventListener('click', () => {
+      if (!lightbox || !lightboxImage) return;
+      currentGallery = JSON.parse(trigger.dataset.gallery || '[]');
+      if (currentGallery.length === 0 && trigger.dataset.image) currentGallery = [trigger.dataset.image];
+      currentIndex = Number(trigger.dataset.index || 0);
+      zoomLevel = 1;
+      resetPan();
+      updateTransform();
+      showGalleryImage();
+      updateGalleryControls();
+      lightbox.classList.remove('hidden');
+      lightbox.classList.add('flex');
+      document.body.classList.add('overflow-hidden');
+      lightboxClose?.focus();
+    });
+  });
+
+  lightboxClose?.addEventListener('click', closeLightbox);
+  lightboxPrevious?.addEventListener('click', () => moveGallery(-1));
+  lightboxNext?.addEventListener('click', () => moveGallery(1));
+  lightboxZoomOut?.addEventListener('click', () => changeZoom(-0.1));
+  lightboxZoomReset?.addEventListener('click', () => {
+    zoomLevel = 1;
+    resetPan();
+    updateTransform();
+  });
+  lightboxZoomIn?.addEventListener('click', () => changeZoom(0.1));
+  lightboxImage?.addEventListener('wheel', (event) => {
+    event.preventDefault();
+    changeZoom(event.deltaY > 0 ? -0.1 : 0.1);
+  }, { passive: false });
+  lightboxImage?.addEventListener('pointerdown', (event) => {
+    if (zoomLevel <= 1 || !lightboxImage) return;
+    event.preventDefault();
+    isDragging = true;
+    dragStartX = event.clientX;
+    dragStartY = event.clientY;
+    dragOriginX = panX;
+    dragOriginY = panY;
+    lightboxImage.style.transition = 'none';
+    lightboxImage.style.cursor = 'grabbing';
+    lightboxImage.setPointerCapture(event.pointerId);
+  });
+  lightboxImage?.addEventListener('pointermove', (event) => {
+    if (!isDragging) return;
+    event.preventDefault();
+    panX = dragOriginX + event.clientX - dragStartX;
+    panY = dragOriginY + event.clientY - dragStartY;
+    limitPan();
+    updateTransform();
+  });
+  lightboxImage?.addEventListener('pointerup', (event) => {
+    isDragging = false;
+    lightboxImage.style.transition = '';
+    lightboxImage.style.cursor = zoomLevel > 1 ? 'grab' : '';
+    lightboxImage.releasePointerCapture(event.pointerId);
+  });
+  lightboxImage?.addEventListener('pointercancel', () => {
+    isDragging = false;
+    lightboxImage.style.transition = '';
+    lightboxImage.style.cursor = zoomLevel > 1 ? 'grab' : '';
+  });
+  lightboxImage?.addEventListener('load', () => {
+    limitPan();
+    updateTransform();
+  });
+  lightbox?.addEventListener('click', (event) => {
+    if (event.target === lightbox) closeLightbox();
+  });
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') closeLightbox();
+    if (event.key === 'ArrowLeft') moveGallery(-1);
+    if (event.key === 'ArrowRight') moveGallery(1);
+  });
+</script>
