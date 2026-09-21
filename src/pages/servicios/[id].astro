@@ -173,14 +173,15 @@ const { servicio } = Astro.props;
   let zoomLevel = 1;
   let panX = 0;
   let panY = 0;
-  let isDragging = false;
-  let dragStartX = 0;
-  let dragStartY = 0;
-  let dragOriginX = 0;
-  let dragOriginY = 0;
-  let swipeStartX = 0;
-  let swipeStartY = 0;
-  let swipePointerId: number | null = null;
+  const activePointers = new Map<number, { x: number; y: number }>();
+  let gesture: 'none' | 'swipe' | 'pan' | 'pinch' = 'none';
+  let gestureStartX = 0;
+  let gestureStartY = 0;
+  let gestureOriginX = 0;
+  let gestureOriginY = 0;
+  let pinchStartDistance = 0;
+  let pinchStartZoom = 1;
+  let pinchStartMidpoint = { x: 0, y: 0 };
 
   const updateTransform = () => {
     if (!lightboxImage) return;
@@ -211,6 +212,14 @@ const { servicio } = Astro.props;
     updateTransform();
   };
 
+  const getPointerDistance = (pointers: { x: number; y: number }[]) =>
+    Math.hypot(pointers[1].x - pointers[0].x, pointers[1].y - pointers[0].y);
+
+  const getPointerMidpoint = (pointers: { x: number; y: number }[]) => ({
+    x: (pointers[0].x + pointers[1].x) / 2,
+    y: (pointers[0].y + pointers[1].y) / 2,
+  });
+
   const showGalleryImage = () => {
     if (!lightboxImage || currentGallery.length === 0) return;
     lightboxImage.src = currentGallery[currentIndex];
@@ -237,6 +246,8 @@ const { servicio } = Astro.props;
     lightbox.classList.remove('flex');
     currentGallery = [];
     currentIndex = 0;
+    activePointers.clear();
+    gesture = 'none';
     zoomLevel = 1;
     resetPan();
     updateTransform();
@@ -277,56 +288,77 @@ const { servicio } = Astro.props;
     changeZoom(event.deltaY > 0 ? -0.1 : 0.1);
   }, { passive: false });
   lightboxImage?.addEventListener('pointerdown', (event) => {
-    if (zoomLevel <= 1 || !lightboxImage) return;
     event.preventDefault();
-    isDragging = true;
-    dragStartX = event.clientX;
-    dragStartY = event.clientY;
-    dragOriginX = panX;
-    dragOriginY = panY;
-    lightboxImage.style.transition = 'none';
-    lightboxImage.style.cursor = 'grabbing';
+    activePointers.set(event.pointerId, { x: event.clientX, y: event.clientY });
     lightboxImage.setPointerCapture(event.pointerId);
+    lightboxImage.style.transition = 'none';
+
+    const pointers = [...activePointers.values()];
+    if (pointers.length >= 2) {
+      gesture = 'pinch';
+      pinchStartDistance = getPointerDistance(pointers);
+      pinchStartZoom = zoomLevel;
+      pinchStartMidpoint = getPointerMidpoint(pointers);
+      gestureOriginX = panX;
+      gestureOriginY = panY;
+    } else if (zoomLevel > 1) {
+      gesture = 'pan';
+      gestureStartX = event.clientX;
+      gestureStartY = event.clientY;
+      gestureOriginX = panX;
+      gestureOriginY = panY;
+      lightboxImage.style.cursor = 'grabbing';
+    } else {
+      gesture = 'swipe';
+      gestureStartX = event.clientX;
+      gestureStartY = event.clientY;
+    }
   });
   lightboxImage?.addEventListener('pointermove', (event) => {
-    if (!isDragging) return;
     event.preventDefault();
-    panX = dragOriginX + event.clientX - dragStartX;
-    panY = dragOriginY + event.clientY - dragStartY;
-    limitPan();
-    updateTransform();
+    if (!activePointers.has(event.pointerId)) return;
+    activePointers.set(event.pointerId, { x: event.clientX, y: event.clientY });
+
+    const pointers = [...activePointers.values()];
+    if (gesture === 'pinch' && pointers.length >= 2) {
+      const midpoint = getPointerMidpoint(pointers);
+      zoomLevel = Math.min(3, Math.max(1, Number((pinchStartZoom * (getPointerDistance(pointers) / pinchStartDistance)).toFixed(2))));
+      panX = gestureOriginX + midpoint.x - pinchStartMidpoint.x;
+      panY = gestureOriginY + midpoint.y - pinchStartMidpoint.y;
+      limitPan();
+      updateTransform();
+    } else if (gesture === 'pan' && pointers.length === 1) {
+      panX = gestureOriginX + event.clientX - gestureStartX;
+      panY = gestureOriginY + event.clientY - gestureStartY;
+      limitPan();
+      updateTransform();
+    }
   });
   lightboxImage?.addEventListener('pointerup', (event) => {
-    isDragging = false;
+    const pointer = activePointers.get(event.pointerId);
+    activePointers.delete(event.pointerId);
+    if (gesture === 'swipe' && pointer && activePointers.size === 0) {
+      const horizontalDistance = event.clientX - gestureStartX;
+      const verticalDistance = event.clientY - gestureStartY;
+      if (Math.abs(horizontalDistance) >= 45 && Math.abs(horizontalDistance) >= Math.abs(verticalDistance)) {
+        moveGallery(horizontalDistance < 0 ? 1 : -1);
+      }
+    }
+    if (activePointers.size === 0) gesture = 'none';
+    if (gesture === 'pinch' && activePointers.size === 1) gesture = zoomLevel > 1 ? 'pan' : 'none';
     lightboxImage.style.transition = '';
     lightboxImage.style.cursor = zoomLevel > 1 ? 'grab' : '';
     lightboxImage.releasePointerCapture(event.pointerId);
   });
-  lightboxImage?.addEventListener('pointercancel', () => {
-    isDragging = false;
+  lightboxImage?.addEventListener('pointercancel', (event) => {
+    activePointers.delete(event.pointerId);
+    if (activePointers.size === 0) gesture = 'none';
     lightboxImage.style.transition = '';
     lightboxImage.style.cursor = zoomLevel > 1 ? 'grab' : '';
   });
   lightboxImage?.addEventListener('load', () => {
     limitPan();
     updateTransform();
-  });
-  lightbox?.addEventListener('pointerdown', (event) => {
-    if (zoomLevel > 1 || !(event.target instanceof Element) || event.target.closest('button')) return;
-    swipePointerId = event.pointerId;
-    swipeStartX = event.clientX;
-    swipeStartY = event.clientY;
-  });
-  lightbox?.addEventListener('pointerup', (event) => {
-    if (swipePointerId !== event.pointerId || zoomLevel > 1) return;
-    const horizontalDistance = event.clientX - swipeStartX;
-    const verticalDistance = event.clientY - swipeStartY;
-    swipePointerId = null;
-    if (Math.abs(horizontalDistance) < 45 || Math.abs(horizontalDistance) < Math.abs(verticalDistance)) return;
-    moveGallery(horizontalDistance < 0 ? 1 : -1);
-  });
-  lightbox?.addEventListener('pointercancel', () => {
-    swipePointerId = null;
   });
   lightbox?.addEventListener('click', (event) => {
     if (event.target === lightbox) closeLightbox();
