@@ -3,6 +3,7 @@ import { readdirSync } from 'node:fs';
 import { join } from 'node:path';
 import Layout from '../../layouts/Layout.astro';
 import servicios from '../../data/servicios.json';
+const images = import.meta.glob('/public/img/*.{jpeg,jpg,png,gif}');
 
 const imagenesPublicas: string[] = readdirSync(join(process.cwd(), 'public', 'img'));
 const imagenesPorNombre = new Map(
