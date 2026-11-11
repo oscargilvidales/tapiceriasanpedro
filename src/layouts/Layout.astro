@@ -6,66 +6,26 @@ import '../global.css';
 
 interface Props {
 	title: string;
-	description?: string;
+	description: string;
 	image?: string;
+	imageAlt?: string;
 	noindex?: boolean;
+	/** Datos estructurados (JSON-LD). Solo la portada lo usa. */
+	jsonLd?: Record<string, unknown>;
 }
 
 const {
 	title,
-	description = 'Tapicería en San Pedro Alcántara (Marbella). Confección e instalación a medida de cortinas, estores, toldos y cojines. Presupuesto sin compromiso.',
+	description,
 	image = '/img/og-image.jpg',
+	imageAlt = 'Logotipo de Tapicería San Pedro',
 	noindex = false,
+	jsonLd,
 } = Astro.props;
 
 const site = Astro.site ?? new URL('https://tapiceriasanpedro.com');
 const canonical = new URL(Astro.url.pathname, site).href;
 const imageUrl = new URL(image, site).href;
-
-// Datos estructurados: Google los usa para el panel de empresa, el logo y el nombre del sitio
-const negocio = {
-	'@context': 'https://schema.org',
-	'@graph': [
-		{
-			'@type': 'HomeAndConstructionBusiness',
-			'@id': `${site.origin}/#negocio`,
-			name: 'Tapicería San Pedro',
-			alternateName: 'Tapicería San Pedro Salvador Gil',
-			description:
-				'Tapicería artesanal en San Pedro Alcántara: cortinas, estores, toldos y cojines a medida.',
-			url: `${site.origin}/`,
-			logo: `${site.origin}/img/logo-512.jpg`,
-			image: [`${site.origin}/img/og-image.jpg`, `${site.origin}/img/cortinas-1.JPG`],
-			telephone: '+34616373306',
-			email: 'info@tapiceriasanpedro.com',
-			address: {
-				'@type': 'PostalAddress',
-				streetAddress: 'Lomas del Tejar, parcela 371',
-				addressLocality: 'San Pedro Alcántara',
-				postalCode: '29670',
-				addressRegion: 'Málaga',
-				addressCountry: 'ES',
-			},
-			geo: {
-				'@type': 'GeoCoordinates',
-				latitude: 36.4979253,
-				longitude: -5.0012147,
-			},
-			hasMap: 'https://www.google.com/maps?cid=5308622581707772830',
-			areaServed: ['San Pedro Alcántara', 'Marbella', 'Estepona', 'Benahavís', 'Costa del Sol'],
-			foundingDate: '1999',
-			sameAs: ['https://instagram.com/tapiceriasanpedro1999'],
-		},
-		{
-			'@type': 'WebSite',
-			'@id': `${site.origin}/#web`,
-			name: 'Tapicería San Pedro',
-			url: `${site.origin}/`,
-			inLanguage: 'es-ES',
-			publisher: { '@id': `${site.origin}/#negocio` },
-		},
-	],
-};
 ---
 <!doctype html>
 <html lang="es">
@@ -94,12 +54,13 @@ const negocio = {
 		<meta property="og:description" content={description} />
 		<meta property="og:url" content={canonical} />
 		<meta property="og:image" content={imageUrl} />
+		<meta property="og:image:alt" content={imageAlt} />
 		<meta name="twitter:card" content="summary_large_image" />
 		<meta name="twitter:title" content={title} />
 		<meta name="twitter:description" content={description} />
 		<meta name="twitter:image" content={imageUrl} />
 
-		<script type="application/ld+json" set:html={JSON.stringify(negocio)} />
+		{jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
 	</head>
 	<body class="bg-marfil">
 		<Header />

@@ -1,0 +1,3 @@
+# Evita que la URL de previsualización *.pages.dev se indexe en Google
+https://:project.pages.dev/*
+  X-Robots-Tag: noindex

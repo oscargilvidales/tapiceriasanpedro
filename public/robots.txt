@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://tapiceriasanpedro.com/sitemap.xml
+Sitemap: https://tapiceriasanpedro.com/sitemap-index.xml

@@ -51,9 +51,10 @@ const tiposVisibles = (servicio.tipos || []).filter((tipo) => !tipo.oculto);
 ---
 
 <Layout
-  title={`${servicio.titulo} a medida en San Pedro Alcántara | Tapicería San Pedro`}
-  description={servicio.descripcion}
+  title={servicio.seoTitle ?? `${servicio.titulo} | Tapicería San Pedro`}
+  description={servicio.seoDescription ?? servicio.descripcion}
   image={resolverImagen(tiposVisibles[0]?.galeria?.[0] ?? servicio.imagen)}
+  imageAlt={`${servicio.titulo} a medida de Tapicería San Pedro`}
 >
   <main class="max-w-7xl mx-auto px-6 py-20">
     
@@ -94,14 +95,16 @@ const tiposVisibles = (servicio.tipos || []).filter((tipo) => !tipo.oculto);
                         type="button"
                         class="lightbox-trigger w-full h-full cursor-zoom-in"
                         data-image={resolverImagen(foto)}
-                        data-alt={tipo.nombre}
+                        data-alt={`${tipo.nombre} a medida de Tapicería San Pedro`}
                         data-gallery={JSON.stringify((tipo.galeria || []).map((imagen) => resolverImagen(imagen)))}
                         data-index={tipo.galeria.indexOf(foto)}
                         aria-label={`Ampliar imagen de ${tipo.nombre}`}
                       >
+                        {/* TODO: describir el contenido concreto de cada foto (p. ej. "cortina de lino beige en salón") */}
                         <img
                           src={resolverImagen(foto)}
-                          alt={tipo.nombre}
+                          alt={`${tipo.nombre} a medida de Tapicería San Pedro, foto ${tipo.galeria.indexOf(foto) + 1}`}
+                          loading="lazy"
                           class="w-full h-full object-cover"
                           onerror="this.onerror=null;this.src='/img/logo-512.jpg';"
                         />
@@ -126,7 +129,7 @@ const tiposVisibles = (servicio.tipos || []).filter((tipo) => !tipo.oculto);
       <div class="mb-24 w-full max-w-4xl mx-auto aspect-video bg-[#D4D4D0] rounded-3xl overflow-hidden shadow-sm">
         <img
           src={resolverImagen(servicio.imagen)}
-          alt={servicio.titulo}
+          alt={`${servicio.titulo} a medida de Tapicería San Pedro`}
           class="w-full h-full object-cover"
           onerror="this.onerror=null;this.src='/img/logo-512.jpg';"
         />
@@ -176,6 +179,7 @@ const tiposVisibles = (servicio.tipos || []).filter((tipo) => !tipo.oculto);
   const lightboxZoomIn = document.getElementById('lightbox-zoom-in');
   let currentGallery: string[] = [];
   let currentIndex = 0;
+  let currentAlt = '';
   let zoomLevel = 1;
   let panX = 0;
   let panY = 0;
@@ -229,7 +233,7 @@ const tiposVisibles = (servicio.tipos || []).filter((tipo) => !tipo.oculto);
   const showGalleryImage = () => {
     if (!lightboxImage || currentGallery.length === 0) return;
     lightboxImage.src = currentGallery[currentIndex];
-    lightboxImage.alt = `Imagen ${currentIndex + 1} de ${currentGallery.length}`;
+    lightboxImage.alt = `${currentAlt ? currentAlt + ', ' : ''}imagen ${currentIndex + 1} de ${currentGallery.length}`;
   };
 
   const updateGalleryControls = () => {
@@ -268,6 +272,7 @@ const tiposVisibles = (servicio.tipos || []).filter((tipo) => !tipo.oculto);
       currentGallery = JSON.parse(trigger.dataset.gallery || '[]');
       if (currentGallery.length === 0 && trigger.dataset.image) currentGallery = [trigger.dataset.image];
       currentIndex = Number(trigger.dataset.index || 0);
+      currentAlt = trigger.dataset.alt || '';
       zoomLevel = 1;
       resetPan();
       updateTransform();

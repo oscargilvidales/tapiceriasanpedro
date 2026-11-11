@@ -9,14 +9,14 @@ const marcas = [
   { nombre: 'Antonio Ferré', logo: '/marcas/AFerre.jpeg', url: 'https://www.aferre.com/' },
   { nombre: 'Emso', logo: '/marcas/Emso.jpeg', url: 'https://www.emsocollections.com/' },
   { nombre: 'Alhambra', logo: '/marcas/Alhambra.jpeg', url: 'https://www.alhambrafabrics.com/' },
-  { nombre: 'Ecopen', logo: '/marcas/ECOPLEN.jpeg', url: 'https://www.atenzza.com/ecoplen/' },
-  { nombre: 'Acuaclean', logo: '/marcas/aquaclean.jpeg', url: 'https://www.aquaclean.com/' },
+  { nombre: 'Ecoplen', logo: '/marcas/ECOPLEN.jpeg', url: 'https://www.atenzza.com/ecoplen/' },
+  { nombre: 'Aquaclean', logo: '/marcas/aquaclean.jpeg', url: 'https://www.aquaclean.com/' },
 ];
 ---
 
 <Layout
-  title="Sobre Nosotros | Tapicería San Pedro"
-  description="Conoce Tapicería San Pedro: taller familiar de tapicería y confección a medida en San Pedro Alcántara, con tejidos de primeras marcas."
+  title="Sobre nosotros | Tapicería San Pedro"
+  description="Conoce Tapicería San Pedro: taller de tapicería en San Pedro Alcántara, Marbella, con más de 40 años de oficio y tejidos de primeras marcas para tu hogar."
 >
   
   <main class="max-w-7xl mx-auto px-6 py-20 md:py-32">
@@ -106,7 +106,7 @@ const marcas = [
             class="bg-[#EFEFEA] border border-[#D4D4D0] rounded-2xl p-6 min-h-28 flex items-center justify-center transition-transform hover:-translate-y-1 hover:border-carbon"
             aria-label={`Visitar ${marca.nombre}`}
           >
-            <img src={marca.logo} alt={marca.nombre} class="max-w-full max-h-14 object-contain" />
+            <img src={marca.logo} alt={`Logotipo de ${marca.nombre}`} class="max-w-full max-h-14 object-contain" />
           </a>
         ))}
       </div>

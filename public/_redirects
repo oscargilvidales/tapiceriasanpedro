@@ -1,0 +1,6 @@
+# URL de la web antigua que ya no existe
+/terminos-condiciones   /aviso-legal/   301
+/terminos-condiciones/  /aviso-legal/   301
+
+# El sitemap lo genera @astrojs/sitemap como sitemap-index.xml
+/sitemap.xml   /sitemap-index.xml   301

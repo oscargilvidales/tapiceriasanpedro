@@ -24,7 +24,16 @@
     'Hablar por WhatsApp': 'Contact us on WhatsApp',
     'Visita nuestro taller': 'Visit our workshop',
     'Ven a conocernos y a ver nuestro catálogo de tejidos en': 'Come and meet us and see our fabric collection at',
-    'Lomas del tejar, parcela 371, San Pedro Alcántara': 'Lomas del Tejar, plot 371, San Pedro Alcántara',
+    'Lomas del Tejar, parcela 371, 29670 San Pedro Alcántara, Marbella': 'Lomas del Tejar, plot 371, 29670 San Pedro Alcántara, Marbella',
+    'Llámanos al': 'Call us on',
+    'Tapicería San Pedro | Tapicería en San Pedro Alcántara': 'Tapicería San Pedro | Upholstery in San Pedro Alcántara',
+    'Cortinas y estores a medida en San Pedro Alcántara': 'Custom curtains and blinds in San Pedro Alcántara',
+    'Toldos a medida en San Pedro Alcántara, Marbella': 'Custom awnings in San Pedro Alcántara, Marbella',
+    'Cojines a medida en San Pedro Alcántara, Marbella': 'Custom cushions in San Pedro Alcántara, Marbella',
+    'Sobre nosotros | Tapicería San Pedro': 'About us | Tapicería San Pedro',
+    'Aviso legal | Tapicería San Pedro': 'Legal notice | Tapicería San Pedro',
+    'Política de privacidad | Tapicería San Pedro': 'Privacy policy | Tapicería San Pedro',
+    'Política de cookies | Tapicería San Pedro': 'Cookie policy | Tapicería San Pedro',
     'Volver al catálogo': 'Back to catalogue',
     'Desliza para ver más fotos': 'Swipe to see more photos',
     'Sin imágenes disponibles': 'No images available',
@@ -207,17 +216,7 @@
       if (translated !== trimmed) node.nodeValue = value.replace(trimmed, translated);
     });
 
-    if (language === 'en') {
-      const title = initialTitle.replace(' a medida', '');
-      if (title.includes('Tapicería San Pedro')) {
-        const serviceName = title.replace(' | Tapicería San Pedro', '');
-        document.title = `${translations[serviceName] || serviceName} | Tapicería San Pedro`;
-      } else {
-        document.title = translations[initialTitle] || initialTitle;
-      }
-    } else {
-      document.title = initialTitle;
-    }
+    document.title = language === 'en' ? translations[initialTitle] || initialTitle : initialTitle;
 
     document.querySelectorAll('.language-select').forEach((select) => {
       select.value = language;
