@@ -3,7 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import servicios from '../data/servicios.json';
 
 const imagenesPublicas: string[] = [
-  'Cojines.jpeg',
+  'cojines.jpeg',
   'asiento-1.jpeg',
   'asiento-2.JPG',
   'cojines-1.JPG',
@@ -47,7 +47,10 @@ function resolverImagen(ruta: string | undefined) {
 }
 ---
 
-<Layout title="Tapicería San Pedro | Artesanía y Confección a Medida">
+<Layout
+  title="Tapicería San Pedro | Cortinas, Estores y Toldos a Medida en San Pedro Alcántara"
+  description="Tapicería artesanal en San Pedro Alcántara (Marbella) desde 1999. Cortinas, estores, toldos y cojines a medida con instalación. Pide presupuesto sin compromiso por WhatsApp."
+>
   
   <!-- SECCIÓN HERO -->
   <section
@@ -66,11 +69,11 @@ function resolverImagen(ruta: string | undefined) {
     </h1>
 
     <p class="mt-6 text-lg md:text-xl text-marfil/90 max-w-2xl">
-      Renueva tus espacios con trabajos profesionales de alta calidad. Diseño, confección e instalación de toldos, cabeceros, estores y cortinas.
+      Renueva tus espacios con trabajos profesionales de alta calidad. Diseño, confección e instalación de toldos, estores y cortinas.
     </p>
 
     <div class="mt-10 flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
-      <a href="https://wa.me/34600000000" class="contacto-boton text-carbon border-2 px-6 py-3 rounded-xl font-semibold transition-all duration-200 hover:bg-transparent text-center" target="_blank" rel="noopener noreferrer">
+      <a href="https://wa.me/34616373306" class="contacto-boton text-carbon border-2 px-6 py-3 rounded-xl font-semibold transition-all duration-200 hover:bg-transparent text-center" target="_blank" rel="noopener noreferrer">
         Pedir Presupuesto
       </a>
       <a href="#servicios" class="bg-transparent text-marfil border-2 border-marfil px-6 py-3 rounded-xl font-semibold transition-all duration-200 hover:bg-marfil hover:text-carbon text-center">
@@ -90,16 +93,16 @@ function resolverImagen(ruta: string | undefined) {
 
     <!-- 2. Cuadrícula dinámica: iteramos sobre el array de servicios -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      {servicios.map((servicio) => (
+      {servicios.filter((s) => !s.oculto).map((servicio) => (
         <a href={`/servicios/${servicio.id}`} class="tarjeta-servicio flex flex-col h-full overflow-hidden p-0 group">
           {(() => {
-            const primeraFoto = servicio.tipos?.[0]?.galeria?.[0] || servicio.imagen;
+            const primeraFoto = servicio.tipos?.find((t) => !t.oculto)?.galeria?.[0] || servicio.imagen;
 
             return (
               <div class="aspect-video w-full overflow-hidden bg-[#D4D4D0]">
                 <img 
                   src={resolverImagen(primeraFoto)} 
-                  onerror="this.onerror=null;this.src='/img/image.png';this.style.objectFit='contain';this.style.padding='2rem';"
+                  onerror="this.onerror=null;this.src='/img/logo-512.jpg';this.style.objectFit='contain';this.style.padding='2rem';"
                   alt={servicio.titulo} 
                   class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                   loading="lazy"

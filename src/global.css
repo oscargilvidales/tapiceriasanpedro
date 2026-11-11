@@ -186,3 +186,39 @@
     color: #f4f1e8 !important;
   }
 }
+/* Selector de idioma: estilo propio para que el desplegable se lea bien en claro y oscuro */
+.language-select {
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+  background-color: var(--color-bg-base) !important;
+  color: var(--color-text-base) !important;
+  border-color: var(--color-text-base) !important;
+  padding-right: 2.25rem !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='%231A1A1A' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 8l5 5 5-5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 1rem;
+}
+
+.language-select:hover,
+.language-select:focus {
+  background-color: var(--color-bg-alt) !important;
+  color: var(--color-text-base) !important;
+}
+
+.language-select:focus-visible {
+  outline: 2px solid var(--color-text-base);
+  outline-offset: 2px;
+}
+
+.language-select option {
+  background-color: var(--color-bg-base);
+  color: var(--color-text-base);
+}
+
+@media (prefers-color-scheme: dark) {
+  .language-select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='%23f4f1e8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 8l5 5 5-5'/%3E%3C/svg%3E");
+  }
+}

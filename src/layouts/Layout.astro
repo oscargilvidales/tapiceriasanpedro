@@ -4,23 +4,108 @@ import Footer from '../components/Footer.astro';
 import BannerCookies from '../components/BannerCookies.astro';
 import '../global.css';
 
-const { title } = Astro.props;
+interface Props {
+	title: string;
+	description?: string;
+	image?: string;
+	noindex?: boolean;
+}
+
+const {
+	title,
+	description = 'Tapicería en San Pedro Alcántara (Marbella). Confección e instalación a medida de cortinas, estores, toldos y cojines. Presupuesto sin compromiso.',
+	image = '/img/og-image.jpg',
+	noindex = false,
+} = Astro.props;
+
+const site = Astro.site ?? new URL('https://tapiceriasanpedro.com');
+const canonical = new URL(Astro.url.pathname, site).href;
+const imageUrl = new URL(image, site).href;
+
+// Datos estructurados: Google los usa para el panel de empresa, el logo y el nombre del sitio
+const negocio = {
+	'@context': 'https://schema.org',
+	'@graph': [
+		{
+			'@type': 'HomeAndConstructionBusiness',
+			'@id': `${site.origin}/#negocio`,
+			name: 'Tapicería San Pedro',
+			alternateName: 'Tapicería San Pedro Salvador Gil',
+			description:
+				'Tapicería artesanal en San Pedro Alcántara: cortinas, estores, toldos y cojines a medida.',
+			url: `${site.origin}/`,
+			logo: `${site.origin}/img/logo-512.jpg`,
+			image: [`${site.origin}/img/og-image.jpg`, `${site.origin}/img/cortinas-1.JPG`],
+			telephone: '+34616373306',
+			email: 'info@tapiceriasanpedro.com',
+			address: {
+				'@type': 'PostalAddress',
+				streetAddress: 'Lomas del Tejar, parcela 371',
+				addressLocality: 'San Pedro Alcántara',
+				postalCode: '29670',
+				addressRegion: 'Málaga',
+				addressCountry: 'ES',
+			},
+			geo: {
+				'@type': 'GeoCoordinates',
+				latitude: 36.4979253,
+				longitude: -5.0012147,
+			},
+			hasMap: 'https://www.google.com/maps?cid=5308622581707772830',
+			areaServed: ['San Pedro Alcántara', 'Marbella', 'Estepona', 'Benahavís', 'Costa del Sol'],
+			foundingDate: '1999',
+			sameAs: ['https://instagram.com/tapiceriasanpedro1999'],
+		},
+		{
+			'@type': 'WebSite',
+			'@id': `${site.origin}/#web`,
+			name: 'Tapicería San Pedro',
+			url: `${site.origin}/`,
+			inLanguage: 'es-ES',
+			publisher: { '@id': `${site.origin}/#negocio` },
+		},
+	],
+};
 ---
 <!doctype html>
 <html lang="es">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<title>{title}</title>
-		<link rel="icon" type="image/png" href="/img/image.png?v=2" />
-		<link rel="shortcut icon" type="image/png" href="/img/image.png?v=2" />
-		<link rel="apple-touch-icon" href="/img/image.png?v=2" />
+		<meta name="description" content={description} />
+		<link rel="canonical" href={canonical} />
+		{noindex && <meta name="robots" content="noindex, follow" />}
+
+		<!-- Iconos (Google exige un favicon cuadrado de 48px o múltiplo) -->
+		<link rel="icon" href="/favicon.ico" sizes="48x48" />
+		<link rel="icon" type="image/png" sizes="48x48" href="/icons/icon-48.png" />
+		<link rel="icon" type="image/png" sizes="96x96" href="/icons/icon-96.png" />
+		<link rel="icon" type="image/png" sizes="192x192" href="/icons/icon-192.png" />
+		<link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png" />
+		<link rel="manifest" href="/site.webmanifest" />
+		<meta name="theme-color" content="#F7F7F4" />
+
+		<!-- Vista previa al compartir (WhatsApp, Facebook, etc.) -->
+		<meta property="og:type" content="website" />
+		<meta property="og:locale" content="es_ES" />
+		<meta property="og:site_name" content="Tapicería San Pedro" />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:url" content={canonical} />
+		<meta property="og:image" content={imageUrl} />
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content={imageUrl} />
+
+		<script type="application/ld+json" set:html={JSON.stringify(negocio)} />
 	</head>
 	<body class="bg-marfil">
 		<Header />
-		
+
 		<!-- Aquí dentro caerá el contenido de index.astro -->
-		<slot /> 
+		<slot />
         <Footer />
 		<BannerCookies />
 		<script src="/i18n.js" is:inline></script>

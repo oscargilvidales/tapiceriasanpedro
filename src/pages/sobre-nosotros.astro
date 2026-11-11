@@ -14,7 +14,10 @@ const marcas = [
 ];
 ---
 
-<Layout title="Sobre Nosotros | Tapicería San Pedro">
+<Layout
+  title="Sobre Nosotros | Tapicería San Pedro"
+  description="Conoce Tapicería San Pedro: taller familiar de tapicería y confección a medida en San Pedro Alcántara, con tejidos de primeras marcas."
+>
   
   <main class="max-w-7xl mx-auto px-6 py-20 md:py-32">
     
@@ -27,17 +30,19 @@ const marcas = [
     </div>
 
     <!-- Sección principal: Historia y Taller -->
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center mb-24">
+    <!-- Cuando haya foto del taller: volver a poner class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center mb-24" y descomentar la imagen -->
+    <div class="max-w-3xl mx-auto mb-24">
       
-      <!-- Columna de imagen -->
+      <!-- Columna de imagen (oculta hasta tener foto del taller)
       <div class="aspect-[4/5] bg-[#D4D4D0] rounded-3xl overflow-hidden shadow-sm relative group">
         <img 
           src="/img/taller-generico.svg" 
           alt="Salvador Gil Jiménez en Tapicería San Pedro" 
           class="w-full h-full object-cover"
-          onerror="this.onerror=null;this.src='/img/placeholder.jpg';"
+          onerror="this.onerror=null;this.src='/img/logo-512.jpg';"
         />
       </div>
+      -->
 
       <!-- Columna de texto -->
       <div class="flex flex-col gap-6 text-lg text-carbon-claro leading-relaxed">
@@ -114,7 +119,7 @@ const marcas = [
         Ponte en manos de profesionales. Cuéntanos qué necesitas y te prepararemos un presupuesto a medida.
       </p>
       <a 
-        href="https://wa.me/34600000000" 
+        href="https://wa.me/34616373306" 
         class="contacto-boton text-carbon font-semibold px-8 py-3 rounded-xl border-2 transition-all duration-200 hover:bg-transparent" 
         target="_blank" 
         rel="noopener noreferrer"

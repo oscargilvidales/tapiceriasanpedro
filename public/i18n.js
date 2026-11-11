@@ -14,7 +14,7 @@
     'San Pedro Alcántara': 'San Pedro Alcántara',
     'Artesanía en tapicería y': 'Upholstery craftsmanship and',
     'cortinas a medida': 'custom-made curtains',
-    'Renueva tus espacios con trabajos profesionales de alta calidad. Diseño, confección e instalación de toldos, cabeceros, estores y cortinas.': 'Renew your spaces with high-quality professional work. Design, fabrication and installation of awnings, headboards, blinds and curtains.',
+    'Renueva tus espacios con trabajos profesionales de alta calidad. Diseño, confección e instalación de toldos, estores y cortinas.': 'Renew your spaces with high-quality professional work. Design, fabrication and installation of awnings, blinds and curtains.',
     'Ver nuestros trabajos': 'View our work',
     'Nuestro Catálogo': 'Our catalogue',
     'Soluciones a medida para cada espacio de tu hogar.': 'Custom solutions for every space in your home.',

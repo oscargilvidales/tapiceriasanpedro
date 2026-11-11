@@ -39,7 +39,7 @@ const currentYear = new Date().getFullYear();
                             >Inicio</a
                         >
                     </li>
-                    {servicios.map((servicio) => (
+                    {servicios.filter((s) => !s.oculto).map((servicio) => (
                         <li>
                             <a
                                 href={`/servicios/${servicio.id}`}
@@ -76,7 +76,7 @@ const currentYear = new Date().getFullYear();
                         </a>
                     </li>
                     <li>
-                        <a href="https://wa.me/34161373306" target="_blank" rel="noopener noreferrer" class="text-carbon-claro hover:text-carbon text-sm transition-colors flex items-center gap-2">
+                        <a href="https://wa.me/34616373306" target="_blank" rel="noopener noreferrer" class="text-carbon-claro hover:text-carbon text-sm transition-colors flex items-center gap-2">
                             <!-- Icono de WhatsApp -->
                             <svg
                                 class="w-4 h-4"
